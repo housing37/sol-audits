@@ -3,16 +3,68 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "./node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "./node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
-import "@openzeppelin/contracts/utils/Context.sol";
-import "@openzeppelin/contracts/utils/structs/Checkpoints.sol";
-import "./VibeRegistry.sol";
-import "./AccessorMod.sol";
+import "./node_modules/@openzeppelin/contracts/utils/Context.sol";
+import "./node_modules/@openzeppelin/contracts/utils/structs/Checkpoints.sol";
+// import "./VibeRegistry.sol";
+// import "./AccessorMod.sol";
 
-contract XUSD is Context, IERC20, IERC20Metadata, AccesorMod, Ownable {
+
+// NOTE: replacing -> import "./VibeRegistry.sol"; for local compilation
+interface VibeRegistry {
+    function calculateAndSumBasis(
+        address to,
+        address from,
+        address txOrigin,
+        address spender,
+        uint256 amount
+    ) external returns (int, uint256);
+}
+// __NOTE: replacing -> import "./VibeRegistry.sol"; for local compilation__
+
+// NOTE: replacing -> import "./AccessorMod.sol"; for local compilation
+contract XUSD is Context, IERC20, IERC20Metadata, Ownable {
+    modifier onlyPreatormaximus() {
+        // require(accessControl.checkRole(msg.sender,  AuthLib.Rank.PREATORMAXIMUS),"Access Restricted");
+        _;
+    }
+
+      modifier onlyGladiator() {
+        // require(accessControl.checkRole(msg.sender,  AuthLib.Rank.GLADIATOR), "Access Restricted");
+        _;
+    }
+
+    modifier onlySenator() {
+        // require(accessControl.checkRole(msg.sender,  AuthLib.Rank.SENATOR), "Access Restricted");
+        _;
+    }
+
+    modifier onlyConsul() {
+        // require(accessControl.checkRole(msg.sender,  AuthLib.Rank.CONSUL),"Access Restricted");
+        _;
+    }
+
+      modifier onlyLegatus() {
+        // require(accessControl.checkRole(msg.sender,  AuthLib.Rank.LEGATUS),"Access Restricted");
+        _;
+    }
+    uint256 private locked = 1;
+    modifier nonReentrant() virtual {
+        require(locked == 1, "REENTRANCY");
+
+        locked = 2;
+
+        _;
+
+        locked = 1;
+    }
+// __NOTE: replacing -> import "./AccessorMod.sol"; for local compilation__
+
+// NOTE: OG contstruction commented for for AccessorMod.sol local compiliation ... v
+// contract XUSD is Context, IERC20, IERC20Metadata, AccesorMod, Ownable {
     using Checkpoints for Checkpoints.Trace224; // Using Checkpoints library for tracking burn history
 
     // Storage
@@ -49,7 +101,8 @@ contract XUSD is Context, IERC20, IERC20Metadata, AccesorMod, Ownable {
         uint256 initialBalance_,
         address _access,
         address t
-    ) AccesorMod(_access) Ownable(msg.sender) {
+    // ) AccesorMod(_access) Ownable(msg.sender) {
+    ) Ownable(msg.sender) {
         require(initialBalance_ > 0, "Initial supply cannot be zero");
         tressury = t;
         _name = name_;
