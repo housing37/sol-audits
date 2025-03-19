@@ -26,7 +26,8 @@ function_selector = '0x493722e5' # setExclusionFromTax(address,bool)
 # start_block = 21499713  # xusd contract no 0x493722e5 before this block number
 # start_block = 21507852  # xusd contract no 0x493722e5 before this block number
 # start_block = 21527393  # xusd contract no 0x493722e5 before this block number 
-start_block = 21565486  # xusd contract no 0x493722e5 before this block number (Oct-02-2024 10:46:55 PM +UTC)
+# start_block = 21565486  # xusd contract no 0x493722e5 before this block number (Oct-02-2024 10:46:55 PM +UTC)
+start_block = 21602434  # xusd contract no 0x493722e5 before this block number (Oct-07-2024 06:34:15 AM +UTC)
 end_block = w3.eth.block_number
 
 excluded_addresses = set()
