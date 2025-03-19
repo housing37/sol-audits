@@ -13,7 +13,9 @@ contract_address = '0xbbeA78397d4d4590882EFcc4820f03074aB2AB29'
 # function_selector = '0x7d394b5b'  # Replace with your actual selector
 
 # "0x493722e5": "setExclusionFromTax(address,bool)" -> "[]",
-function_selector = '0x493722e5'
+# function_selector = '0x095ea7b3' # approve(address,uint256)
+function_selector = '0x493722e5' # setExclusionFromTax(address,bool)
+
 # function_selector = bytes.fromhex('493722e5')
 
 # Block range (adjust as needed, e.g., from deployment block)
@@ -22,7 +24,9 @@ function_selector = '0x493722e5'
 # start_block = 21496532  # xusd contract invoked close to deploy block
 # start_block = 21498661  # xusd contract no 0x493722e5 before this block number
 # start_block = 21499713  # xusd contract no 0x493722e5 before this block number
-start_block = 21507852  # xusd contract no 0x493722e5 before this block number
+# start_block = 21507852  # xusd contract no 0x493722e5 before this block number
+# start_block = 21527393  # xusd contract no 0x493722e5 before this block number 
+start_block = 21565486  # xusd contract no 0x493722e5 before this block number (Oct-02-2024 10:46:55 PM +UTC)
 end_block = w3.eth.block_number
 
 excluded_addresses = set()
