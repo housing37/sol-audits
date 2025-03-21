@@ -15,6 +15,8 @@ BIN_FILE = None
 CONTRACT = None
 LST_CONTR_ABI_BIN = [
     "../bin/contracts/XUSD",
+    "../bin/contracts/DaiJoin",
+    "../bin/contracts/Vat",
 ]
 
 # Function to calculate the selector from a function signature
